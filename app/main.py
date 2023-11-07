@@ -13,16 +13,6 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.label import Label
 
-class ChatLabel(RecycleDataViewBehavior, Label):
-    """Basic label class for chat messages in the RecycleView."""
-    pass
-
-class ChatScreen(Screen):
-    pass
-
-class SettingsScreen(Screen):
-    pass
-
 # Load configuration
 with open("config.json", "r") as f:
     config = json.load(f)
@@ -139,6 +129,17 @@ ScreenManager:
                 pos_hint: {'center_x': 0.5}
                 on_release: app.save_settings(api_key.text)
 '''
+
+class ChatLabel(RecycleDataViewBehavior, Label):
+    """Basic label class for chat messages in the RecycleView."""
+    pass
+
+class ChatScreen(Screen):
+    pass
+
+class SettingsScreen(Screen):
+    pass
+    
 class MainApp(App):
     def build(self):
         self.screen = Builder.load_string(KV)
