@@ -13,7 +13,6 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.label import Label
 
-
 class ChatLabel(RecycleDataViewBehavior, Label):
     """Basic label class for chat messages in the RecycleView."""
     pass
