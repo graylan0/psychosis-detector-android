@@ -1,6 +1,17 @@
 # psychosis-detector-android
 
+## Engineer Notes:
+Quantum Circuit: The quantum_emotion_circuit function uses rotations (RY) to encode the normalized RGB values and the amplitude (related to sentiment) into a quantum state. Conditional entanglement is applied based on the amplitude, which could represent the intensity of the emotion.
 
+AsyncIO: The application uses asyncio and httpx for asynchronous HTTP requests. This is necessary for non-blocking network calls in an async application.
+
+AIOSQLite: The application uses aiosqlite to perform asynchronous database operations, which is suitable for async applications.
+
+OpenAI API: The application uses the OpenAI API to generate color codes from emotions and to perform psychosis detection. The API key is loaded from a configuration file.
+
+Kivy UI: The application uses Kivy for the user interface, with screens for chat and settings.
+
+TextBlob: Sentiment analysis is performed using TextBlob, which provides a simple API for common natural language processing (NLP) tasks.
 To set up a Python environment with Kivy for debugging, follow these steps:
 
 1. **Install Python**: Ensure you have Python installed on your system. You can download it from the official Python website. It's recommended to use Python 3.6 or above.
