@@ -187,11 +187,33 @@ class MainApp(App):
     def quantum_emotion_circuit(self, color_code, amplitude):
         @qml.qnode(qml_device)
         def circuit():
+            # Convert the color code to RGB values and normalize
+            r, g, b = [int(color_code[i:i+2], 16) for i in (1, 3, 5)]
+            r, g, b = r / 255.0, g / 255.0, b / 255.0
+
+            # Apply rotations based on the RGB values
+            qml.RY(np.pi * r, wires=1)
+            qml.RY(np.pi * g, wires=2)
+            qml.RY(np.pi * b, wires=3)
+
+            # Apply a rotation based on the amplitude, which is related to the sentiment
             qml.RY(np.pi * amplitude, wires=0)
-            qml.templates.ColorCode(color_code, wires=range(1, 4))
+
+            # Dynamic entanglement based on some property, for example, the amplitude
+            if amplitude > 0.5:
+                # Stronger emotions might have more entanglement
+                qml.CNOT(wires=[0, 1])
+                qml.CNOT(wires=[1, 2])
+                qml.CNOT(wires=[2, 3])
+                qml.CNOT(wires=[3, 0])  # Adding an extra entanglement
+            else:
+                # Weaker emotions might have less entanglement
+                qml.CNOT(wires=[0, 1])
+                qml.CNOT(wires=[2, 3])
+
             return qml.state()
 
-        return circuit()
+    return circuit()
 
     async def perform_psychosis_detection(self, emotion, color_code, quantum_state, amplitude, client):
         # Convert the quantum state to a string representation
