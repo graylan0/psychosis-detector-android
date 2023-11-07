@@ -185,15 +185,6 @@ class MainApp(App):
         return (analysis.sentiment.polarity + 1) / 2
 
     def quantum_emotion_circuit(self, color_code, amplitude):
-        @qml.qnode(qml_device)
-        def circuit():
-            qml.RY(np.pi * amplitude, wires=0)
-            qml.templates.ColorCode(color_code, wires=range(1, 4))
-            return qml.state()
-
-        return circuit()
-
-
         @qml.qnode(qml_model)
 
         # Get the color code and amplitude for the emotion
