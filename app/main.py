@@ -9,23 +9,13 @@ import pennylane as qml
 from pennylane import numpy as np
 import openai
 import asyncio
-from kivy.clock import Clock
 import json
 from kivy.lang import Builder
 from kivy.app import App
-from kivy.uix.textinput import TextInput
-from kivy.metrics import dp
-from kivy.uix.recycleview import RecycleView
-from kivy.core.window import Window
-from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.uix.recycleview.layout import LayoutSelectionBehavior
-from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.screenmanager import Screen
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.label import Label
-from kivy.lang import Builder
-from kivy.clock import Clock
-from kivy.uix.recycleview.views import RecycleDataViewBehavior
-from kivy.uix.label import Label
+
 
 class ChatLabel(RecycleDataViewBehavior, Label):
     """Basic label class for chat messages in the RecycleView."""
@@ -248,3 +238,4 @@ class MainApp(App):
 
 if __name__ == '__main__':
     MainApp().run()
+
