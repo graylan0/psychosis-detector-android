@@ -20,7 +20,7 @@ To set up a Python environment with Kivy for debugging, follow these steps:
 5. **Install Additional Dependencies**:
    - For any additional libraries (like `httpx`, `aiosqlite`, etc.), install them using
    -
-   -   `pip install httpx aiosqlite openai kivymd`.
+   -   `pip install httpx aiosqlite openai kivymd`
 
 6. **Set Up an IDE for Debugging**:
    - Use an IDE like PyCharm, VS Code, or Atom that supports Python and install the necessary extensions for Python and Kivy (if available).
