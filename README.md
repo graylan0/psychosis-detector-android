@@ -39,3 +39,58 @@ To set up a Python environment with Kivy for debugging, follow these steps:
     - Ensure your application can be closed properly by handling all exceptions and stopping any asynchronous tasks.
 
 By following these steps, you'll have a Python environment set up with Kivy, ready for debugging your application.
+
+
+## config.json Tutorial 
+
+To obtain an OpenAI API key and set it in a `config.json` file for your project, follow these steps:
+
+1. **Sign Up for OpenAI**:
+   - Visit the OpenAI website and sign up for an account if you don't already have one.
+   - Navigate to the API section on the OpenAI website.
+
+2. **API Key Generation**:
+   - Once you have access to the API section, there should be an option to create a new API key.
+   - Follow the prompts to generate a new key. This key is your private token to access OpenAI's API, so keep it secure.
+
+3. **Copy the API Key**:
+   - After the key is generated, make sure to copy it. OpenAI will not show the key again for security reasons.
+
+4. **Create `config.json` File**:
+   - In your project directory, create a new file named `config.json`.
+   - Open this file in a text editor of your choice.
+
+5. **Insert API Key into `config.json`**:
+   - Structure your `config.json` file to store the API key. It should look something like this:
+
+```json
+{
+    "openai_api_key": "your-api-key-here"
+}
+```
+
+   - Replace `your-api-key-here` with the API key you copied from the OpenAI website.
+
+6. **Save the `config.json` File**:
+   - Save the changes to your `config.json` file.
+
+7. **Use the API Key in Your Application**:
+   - In your application, you will typically load the `config.json` file to access your API key. Here's an example in Python:
+
+```python
+import json
+
+# Load configuration
+with open("config.json", "r") as config_file:
+    config = json.load(config_file)
+
+openai_api_key = config["openai_api_key"]
+```
+
+   - Now you can use `openai_api_key` in your application to authenticate API requests.
+
+8. **Keep the API Key Secure**:
+   - Do not share your `config.json` with others or upload it to public repositories.
+   - Consider using environment variables for additional security in a production environment.
+
+By following these steps, you'll have your OpenAI API key securely stored in a `config.json` file and ready to be used in your application.
