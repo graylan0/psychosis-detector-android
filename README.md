@@ -12,8 +12,10 @@ OpenAI API: The application uses the OpenAI API to generate color codes from emo
 Kivy UI: The application uses Kivy for the user interface, with screens for chat and settings.
 
 TextBlob: Sentiment analysis is performed using TextBlob, which provides a simple API for common natural language processing (NLP) tasks.
-To set up a Python environment with Kivy for debugging, follow these steps:
 
+
+
+## Install 
 1. **Install Python**: Ensure you have Python installed on your system. You can download it from the official Python website. It's recommended to use Python 3.6 or above.
 
 2. **Create a Virtual Environment**:
