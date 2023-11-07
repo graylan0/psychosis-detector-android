@@ -13,6 +13,17 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.label import Label
 
+
+class ChatLabel(RecycleDataViewBehavior, Label):
+    """Basic label class for chat messages in the RecycleView."""
+    pass
+
+class ChatScreen(Screen):
+    pass
+
+class SettingsScreen(Screen):
+    pass
+
 # Load configuration
 with open("config.json", "r") as f:
     config = json.load(f)
@@ -129,17 +140,6 @@ ScreenManager:
                 pos_hint: {'center_x': 0.5}
                 on_release: app.save_settings(api_key.text)
 '''
-
-class ChatLabel(RecycleDataViewBehavior, Label):
-    """Basic label class for chat messages in the RecycleView."""
-    pass
-
-class ChatScreen(Screen):
-    pass
-
-class SettingsScreen(Screen):
-    pass
-    
 class MainApp(App):
     def build(self):
         self.screen = Builder.load_string(KV)
@@ -185,34 +185,13 @@ class MainApp(App):
         return (analysis.sentiment.polarity + 1) / 2
 
     def quantum_emotion_circuit(self, color_code, amplitude):
-        @qml.qnode(qml_model)
+        @qml.qnode(qml_device)
+        def circuit():
+            qml.RY(np.pi * amplitude, wires=0)
+            qml.templates.ColorCode(color_code, wires=range(1, 4))
+            return qml.state()
 
-        # Get the color code and amplitude for the emotion
-        color_code = emotion_to_color[emotion]
-        amplitude = emotion_to_amplitude[emotion]
-    
-        # Convert color code to RGB values and normalize
-        r, g, b = [int(color_code[i:i+2], 16) for i in (1, 3, 5)]
-        r, g, b = r / 255.0, g / 255.0, b / 255.0
-    
-        # Prepare an initial state vector that might represent a neutral emotional state
-        state_vector = [1/np.sqrt(2), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1/np.sqrt(2)]
-    
-        # Prepare the quantum state using the MottonenStatePreparation
-        qml.MottonenStatePreparation(state_vector, wires=[0, 1, 2, 3])
-    
-        # Apply rotations based on the color code and amplitude
-        qml.RY(r * np.pi, wires=0)
-        qml.RY(g * np.pi, wires=1)
-        qml.RY(b * np.pi, wires=2)
-        qml.RY(amplitude * np.pi, wires=3)
-    
-        # Entangle the qubits to represent the complexity of emotions
-        qml.CNOT(wires=[0, 1])
-        qml.CNOT(wires=[1, 2])
-        qml.CNOT(wires=[2, 3])
-    
-        return qml.state()
+        return circuit()
 
     async def perform_psychosis_detection(self, emotion, color_code, quantum_state, amplitude, client):
         # Convert the quantum state to a string representation
