@@ -1,4 +1,4 @@
-# psychosis-detector-android
+# psychosis-detector-android Colobit Emotional Research, use with caution
 
 ## Engineer Notes:
 Quantum Circuit: The quantum_emotion_circuit function uses rotations (RY) to encode the normalized RGB values and the amplitude (related to sentiment) into a quantum state. Conditional entanglement is applied based on the amplitude, which could represent the intensity of the emotion.
